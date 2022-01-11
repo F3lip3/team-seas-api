@@ -1,5 +1,20 @@
 scalar DateTime
 
+input CreateDonationInput {
+  count: Int!
+  displayName: String!
+  email: String!
+  mobile: String
+  team: String
+  message: String
+  createdAt: DateTime
+}
+
+input OrderByParams {
+  field: String
+  direction: String
+}
+
 type Donation {
   id: Int!
   count: Int!
@@ -11,18 +26,8 @@ type Donation {
   createdAt: DateTime
 }
 
-input CreateDonationInput {
-  count: Int!
-  displayName: String!
-  email: String!
-  mobile: String
-  team: String
-  message: String
-  createdAt: DateTime
-}
-
 type Query {
-  donations: [Donation]!
+  donations(orderBy: OrderByParams): [Donation]!
   donation(id: Int!): Donation
 }
 
